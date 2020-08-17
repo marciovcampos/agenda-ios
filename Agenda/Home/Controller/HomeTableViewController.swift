@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class HomeTableViewController: UITableViewController, UISearchBarDelegate {
+class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
     
     //MARK: - Variáveis
     
@@ -78,11 +78,24 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         pesquisaAluno.sortDescriptors = [ordenaPorNome]
 
         gerenciadorDeResultados = NSFetchedResultsController(fetchRequest: pesquisaAluno, managedObjectContext: contexto, sectionNameKeyPath: nil, cacheName: nil)
+        gerenciadorDeResultados?.delegate = self
 
         do {
             try gerenciadorDeResultados?.performFetch()
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    // MARK: - FetchedResultsControllerDelegate
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            // implementar
+            break
+        default:
+            tableView.reloadData()
         }
     }
 
