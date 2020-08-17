@@ -33,6 +33,8 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
         return appDelegate.persistentContainer.viewContext
     }
     
+    var aluno: Aluno?
+    
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -40,13 +42,19 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
         self.arredondaView()
         self.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(aumentarScrollView(_:)), name: .UIKeyboardWillShow, object: nil)
-        
     }
        
     // MARK: - Métodos
     
     func setup() {
         imagePicker.delegate = self
+        guard let alunoSelecionado = aluno else { return }
+        textFieldNome.text = alunoSelecionado.nome
+        textFieldEndereco.text = alunoSelecionado.endereco
+        textFieldTelefone.text = alunoSelecionado.telefone
+        textFieldSite.text = alunoSelecionado.site
+        textFieldNota.text = "\(alunoSelecionado.nota)"
+        imageAluno.image = alunoSelecionado.imagem as? UIImage
     }
     
     func arredondaView() {
@@ -96,13 +104,17 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
     
     
     @IBAction func buttonSalvar(_ sender: Any) {
-        let aluno = Aluno(context: contexto)
-        aluno.nome = textFieldNome.text
-        aluno.endereco = textFieldEndereco.text
-        aluno.telefone = textFieldTelefone.text
-        aluno.site = textFieldSite.text
-        aluno.nota = (textFieldNota.text! as NSString).doubleValue
-        aluno.imagem = imageAluno.image
+        
+        if aluno == nil {
+            let aluno = Aluno(context: contexto)
+        }
+        
+        aluno?.nome = textFieldNome.text
+        aluno?.endereco = textFieldEndereco.text
+        aluno?.telefone = textFieldTelefone.text
+        aluno?.site = textFieldSite.text
+        aluno?.nota = (textFieldNota.text! as NSString).doubleValue
+        aluno?.imagem = imageAluno.image
 
         do {
             try contexto.save()

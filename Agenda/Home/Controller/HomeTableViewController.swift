@@ -19,6 +19,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
        }
     let searchController = UISearchController(searchResultsController: nil)
     var gerenciadorDeResultados:NSFetchedResultsController<Aluno>?
+    var alunoViewController:AlunoViewController?
     
     // MARK: - View Lifecycle
 
@@ -33,7 +34,14 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     func configuraSearch() {
         self.searchController.searchBar.delegate = self
         self.searchController.dimsBackgroundDuringPresentation = false
+       
         self.navigationItem.searchController = searchController
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editar"{
+            alunoViewController = segue.destination as? AlunoViewController
+        }
     }
 
     // MARK: - Table view data source
@@ -66,6 +74,13 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let alunoSelecionado  = gerenciadorDeResultados?.fetchedObjects![indexPath.row] else {
+            return
+        }
+        alunoViewController?.aluno = alunoSelecionado
     }
     
     func recuperaAluno() {
