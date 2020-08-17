@@ -50,11 +50,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         let celula = tableView.dequeueReusableCell(withIdentifier: "celula-aluno", for: indexPath) as! HomeTableViewCell
         guard let aluno = gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return celula}
         
-        celula.labelNomeDoAluno.text = aluno.nome
-        
-        if let imagemDoAluno = aluno.imagem as? UIImage{
-            celula.imageAluno.image = imagemDoAluno
-        }
+        celula.configuraCelula(aluno)
         
         return celula
     }
