@@ -54,7 +54,15 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
         textFieldTelefone.text = alunoSelecionado.telefone
         textFieldSite.text = alunoSelecionado.site
         textFieldNota.text = "\(alunoSelecionado.nota)"
-        imageAluno.image = alunoSelecionado.imagem as? UIImage
+        
+        let gerenciadorDeArquivos = FileManager.default
+        let caminho = NSHomeDirectory() as NSString
+        let caminhoDaImagem = caminho.appendingPathComponent(alunoSelecionado.foto!)
+        
+        if gerenciadorDeArquivos.fileExists(atPath: caminhoDaImagem){
+            imageAluno.image = UIImage(contentsOfFile: caminhoDaImagem)
+        }
+        
     }
     
     func arredondaView() {
@@ -106,22 +114,49 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
     @IBAction func buttonSalvar(_ sender: Any) {
         
         if aluno == nil {
-            let aluno = Aluno(context: contexto)
+            aluno = Aluno(context: contexto)
         }
+        
+        let caminhoDoDSistemaDeArquivos = NSHomeDirectory() as NSString
+        let diretorioDeImagens = "Documents/Images"
+        let caminhoCompleto = caminhoDoDSistemaDeArquivos.appendingPathComponent(diretorioDeImagens)
+                
+        let gerenciadoDeArquivos = FileManager.default
+        
+        if !gerenciadoDeArquivos.fileExists(atPath: caminhoCompleto){
+            do {
+                try gerenciadoDeArquivos.createDirectory(atPath: caminhoCompleto, withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        let nomeDaImagem = String(format: "%@.jpeg", NSUUID().uuidString)
+        let url = URL(fileURLWithPath: String(format: "%@/%@", caminhoCompleto, nomeDaImagem))
+        
+        guard let imagem = imageAluno.image else { return }
+        guard let data = UIImagePNGRepresentation(imagem) else { return }
+        
+        do {
+            try data.write(to: url)
+        }catch {
+            print(error.localizedDescription)
+        }        
         
         aluno?.nome = textFieldNome.text
         aluno?.endereco = textFieldEndereco.text
         aluno?.telefone = textFieldTelefone.text
         aluno?.site = textFieldSite.text
         aluno?.nota = (textFieldNota.text! as NSString).doubleValue
-        aluno?.imagem = imageAluno.image
-
+        aluno?.foto = String(format: "%@/%@", diretorioDeImagens, nomeDaImagem)
+      
         do {
             try contexto.save()
             navigationController?.popViewController(animated: true)
         } catch {
             print(error.localizedDescription)
         }
+        
     }
     
     

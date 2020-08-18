@@ -18,11 +18,16 @@ class HomeTableViewCell: UITableViewCell {
     func configuraCelula(_ aluno: Aluno){
         labelNomeDoAluno.text = aluno.nome
         imageAluno.layer.cornerRadius = imageAluno.frame.width / 2
-        imageAluno.layer.masksToBounds = true
-             
-         if let imagemDoAluno = aluno.imagem as? UIImage{
-             imageAluno.image = imagemDoAluno
-         }
+        
+        let gerenciadoDeArquivos = FileManager.default
+
+        let caminho = NSHomeDirectory() as NSString
+        let caminhoDaImagem = caminho.appendingPathComponent(aluno.foto!)
+          
+          if gerenciadoDeArquivos.fileExists(atPath: caminhoDaImagem){
+              imageAluno.image = UIImage(contentsOfFile: caminhoDaImagem)
+          }
+ 
     }
 
     override func awakeFromNib() {
