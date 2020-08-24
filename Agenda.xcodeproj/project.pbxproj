@@ -17,6 +17,7 @@
 		03AA176D1FC8515A003CB2B8 /* AlunoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */; };
 		8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */; };
 		8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBEE24F43DCD00F998C1 /* Mensagem.swift */; };
+		8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF024F46DF500F998C1 /* Localizacao.swift */; };
 		80DA357524E31A5900FA70A4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA357424E31A5800FA70A4 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoViewController.swift; sourceTree = "<group>"; };
 		8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOpcoesAlunos.swift; sourceTree = "<group>"; };
 		8043EBEE24F43DCD00F998C1 /* Mensagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mensagem.swift; sourceTree = "<group>"; };
+		8043EBF024F46DF500F998C1 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
 		80DA357424E31A5800FA70A4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				80DA357424E31A5800FA70A4 /* ImagePicker.swift */,
 				8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */,
 				8043EBEE24F43DCD00F998C1 /* Mensagem.swift */,
+				8043EBF024F46DF500F998C1 /* Localizacao.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */,
 				8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */,
 				03AA174E1FC84154003CB2B8 /* AppDelegate.swift in Sources */,
+				8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
