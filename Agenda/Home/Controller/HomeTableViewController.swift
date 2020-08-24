@@ -76,6 +76,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                     
                 case .mapa:
                     let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
+                    mapa.aluno = alunoSelecionado
                     self.navigationController?.pushViewController(mapa, animated: true)
                     break
                     
