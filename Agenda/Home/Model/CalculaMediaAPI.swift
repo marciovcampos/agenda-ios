@@ -35,7 +35,7 @@ class CalculaMediaAPI: NSObject {
                
         json = [
             "list" : [
-                "aluno" : listaDeAlunos
+                ["aluno" : listaDeAlunos]
             ]
         ]
         
