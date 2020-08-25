@@ -114,16 +114,17 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
             
             AutenticacaoLocal().autorizaUsuario(completion: { (autenticado) in
                 if autenticado {
-                    guard let alunoSelecionado = self.gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return }
-                    self.contexto.delete(alunoSelecionado)
-                   do {
-                    try self.contexto.save()
-                   }catch {
-                       print(error.localizedDescription)
-                   }
+                    DispatchQueue.main.async {
+                       guard let alunoSelecionado = self.gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return }
+                         self.contexto.delete(alunoSelecionado)
+                        do {
+                         try self.contexto.save()
+                        }catch {
+                            print(error.localizedDescription)
+                        }
+                    }
                 }
-            })
-            
+            })            
            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
