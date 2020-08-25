@@ -124,7 +124,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                         }
                     }
                 }
-            })            
+            })
            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -142,10 +142,14 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         alunoViewController?.aluno = alunoSelecionado
     }
     
-    func recuperaAluno() {
+    func recuperaAluno(filtro:String = "") {
         let pesquisaAluno:NSFetchRequest<Aluno> = Aluno.fetchRequest()
         let ordenaPorNome = NSSortDescriptor(key: "nome", ascending: true)
         pesquisaAluno.sortDescriptors = [ordenaPorNome]
+        
+        if verificaFiltro(filtro){
+            pesquisaAluno.predicate = filtraAluno(filtro)
+        }
 
         gerenciadorDeResultados = NSFetchedResultsController(fetchRequest: pesquisaAluno, managedObjectContext: contexto, sectionNameKeyPath: nil, cacheName: nil)
         gerenciadorDeResultados?.delegate = self
@@ -155,6 +159,17 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func filtraAluno(_ filtro:String) -> NSPredicate {
+        return NSPredicate(format: "nome CONTAINS %@", filtro)
+    }
+    
+    func verificaFiltro(_ filtro:String) -> Bool {
+        if filtro.isEmpty {
+            return false
+        }
+        return true
     }
     
     // MARK: - FetchedResultsControllerDelegate
@@ -181,6 +196,19 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    // MARK: - SearchBarDelegate
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let nomeDoAluno = searchBar.text else { return }
+        recuperaAluno(filtro: nomeDoAluno)
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        recuperaAluno()
+        tableView.reloadData()
     }
     
 
