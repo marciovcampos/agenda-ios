@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapaViewController: UIViewController {
+class MapaViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - IBOutlet
     
@@ -19,21 +19,43 @@ class MapaViewController: UIViewController {
     
     var aluno:Aluno?
     lazy var localizacao = Localizacao()
+    lazy var gerenciadorDeLocalizacao = CLLocationManager()
         
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = getTitulo()
+        verificaAutorizacaoDoUsuario()
         localizacaoInicial()
         localizarAluno()
         mapa.delegate = localizacao
+        gerenciadorDeLocalizacao.delegate = self
     }
     
     // MARK: Métodos
     
     func getTitulo() -> String {
         return "Localizar Alunos"
+    }
+    
+    func verificaAutorizacaoDoUsuario(){
+        if CLLocationManager.locationServicesEnabled(){
+            switch CLLocationManager.authorizationStatus() {
+                case .authorizedWhenInUse:
+                    let botao = Localizacao().configuraBotaoLocalizacaoAtual(mapa: mapa)
+                    mapa.addSubview(botao)
+                    gerenciadorDeLocalizacao.startUpdatingLocation()
+                    break
+                case .notDetermined:
+                    gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
+                    break
+                case .denied:
+                    break
+                default:
+                    break
+            }
+        }
     }
     
     func localizacaoInicial(){
@@ -53,6 +75,23 @@ class MapaViewController: UIViewController {
             }
             
         }
+    }
+    
+    // MARK: - CLLocationManagerDelegate
+    
+    func locationMager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
+        switch status {
+        case .authorizedWhenInUse:
+            let botao = Localizacao().configuraBotaoLocalizacaoAtual(mapa: mapa)
+            mapa.addSubview(botao)
+            gerenciadorDeLocalizacao.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        print(locations)
     }
     
     
