@@ -20,6 +20,7 @@
 		8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF024F46DF500F998C1 /* Localizacao.swift */; };
 		8043EBF524F4743300F998C1 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF424F4743300F998C1 /* MapaViewController.swift */; };
 		8043EBF824F56B6E00F998C1 /* CalculaMediaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF724F56B6E00F998C1 /* CalculaMediaAPI.swift */; };
+		8043EBFA24F587A300F998C1 /* Notificacoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF924F587A300F998C1 /* Notificacoes.swift */; };
 		80DA357524E31A5900FA70A4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA357424E31A5800FA70A4 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		8043EBF024F46DF500F998C1 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
 		8043EBF424F4743300F998C1 /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		8043EBF724F56B6E00F998C1 /* CalculaMediaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculaMediaAPI.swift; sourceTree = "<group>"; };
+		8043EBF924F587A300F998C1 /* Notificacoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificacoes.swift; sourceTree = "<group>"; };
 		80DA357424E31A5800FA70A4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 				8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */,
 				8043EBEE24F43DCD00F998C1 /* Mensagem.swift */,
 				8043EBF024F46DF500F998C1 /* Localizacao.swift */,
+				8043EBF924F587A300F998C1 /* Notificacoes.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				03AA17681FC843B1003CB2B8 /* HomeTableViewCell.swift in Sources */,
 				8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */,
 				8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */,
+				8043EBFA24F587A300F998C1 /* Notificacoes.swift in Sources */,
 				8043EBF524F4743300F998C1 /* MapaViewController.swift in Sources */,
 				03AA174E1FC84154003CB2B8 /* AppDelegate.swift in Sources */,
 				8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */,
