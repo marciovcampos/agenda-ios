@@ -18,7 +18,8 @@ class MapaViewController: UIViewController {
     // MARK: - Variavel
     
     var aluno:Aluno?
-    
+    lazy var localizacao = Localizacao()
+        
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -26,6 +27,7 @@ class MapaViewController: UIViewController {
         self.navigationItem.title = getTitulo()
         localizacaoInicial()
         localizarAluno()
+        mapa.delegate = localizacao
     }
     
     // MARK: Métodos
@@ -35,8 +37,8 @@ class MapaViewController: UIViewController {
     }
     
     func localizacaoInicial(){
-        Localizacao().converterEnderecoEmCoordenadas(endereco: "Trianon - Masp") { (localizacaoEncontrada) in
-            let pino = self.configuraPino(titulo: "Trianon - Masp", localizacao: localizacaoEncontrada)
+        Localizacao().converterEnderecoEmCoordenadas(endereco: "Caelum - São Paulo") { (localizacaoEncontrada) in
+            let pino = Localizacao().configuraPino(titulo: "Caelum", localizacao: localizacaoEncontrada, cor: .black, icone: UIImage(named: "icon_caelum"))
             let regiao = MKCoordinateRegionMakeWithDistance(pino.coordinate, 500, 500)
             self.mapa.setRegion(regiao, animated: true)
             self.mapa.addAnnotation(pino)
@@ -46,19 +48,13 @@ class MapaViewController: UIViewController {
     func localizarAluno(){
         if let aluno = aluno {
             Localizacao().converterEnderecoEmCoordenadas(endereco: aluno.endereco!) { (localizacaoEncontrada) in
-                let pino = self.configuraPino(titulo: aluno.nome!, localizacao: localizacaoEncontrada)
+                let pino = Localizacao().configuraPino(titulo: aluno.nome!, localizacao: localizacaoEncontrada, cor: nil, icone: nil)
             self.mapa.addAnnotation(pino)
             }
             
         }
     }
     
-    func configuraPino(titulo:String, localizacao:CLPlacemark) -> MKPointAnnotation {
-        let pino = MKPointAnnotation()
-        pino.title = titulo
-        pino.coordinate = localizacao.location!.coordinate
-        return pino
-    }
     
     
 
