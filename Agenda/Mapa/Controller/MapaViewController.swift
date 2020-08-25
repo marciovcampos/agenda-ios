@@ -38,7 +38,7 @@ class MapaViewController: UIViewController {
     
     func localizacaoInicial(){
         Localizacao().converterEnderecoEmCoordenadas(endereco: "Caelum - São Paulo") { (localizacaoEncontrada) in
-            let pino = Localizacao().configuraPino(titulo: "Caelum", localizacao: localizacaoEncontrada, cor: .black, icone: UIImage(named: "icon_caelum"))
+            let pino = Localizacao().configuraPino(titulo: "Caelum", localizacao: localizacaoEncontrada, cor: .black, icone: UIImage(named: "icon_caelum.png"))
             let regiao = MKCoordinateRegionMakeWithDistance(pino.coordinate, 500, 500)
             self.mapa.setRegion(regiao, animated: true)
             self.mapa.addAnnotation(pino)
