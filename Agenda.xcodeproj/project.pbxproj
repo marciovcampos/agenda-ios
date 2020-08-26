@@ -25,6 +25,8 @@
 		8043EBFF24F59E1000F998C1 /* Pino.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBFE24F59E1000F998C1 /* Pino.swift */; };
 		8043EC0424F5B01300F998C1 /* icon_caelum.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043EC0324F5B01300F998C1 /* icon_caelum.png */; };
 		8087A03324F6A83D0034716E /* AlunoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087A03224F6A83D0034716E /* AlunoAPI.swift */; };
+		8087A03524F6E7B30034716E /* Repositorio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087A03424F6E7B30034716E /* Repositorio.swift */; };
+		8087A03724F6E86B0034716E /* AlunoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087A03624F6E86B0034716E /* AlunoDAO.swift */; };
 		80DA357524E31A5900FA70A4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA357424E31A5800FA70A4 /* ImagePicker.swift */; };
 		9E04AE6F9421BE26B85A464C /* Pods_Agenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC951B229E6C2B9FDE03E918 /* Pods_Agenda.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		8043EBFE24F59E1000F998C1 /* Pino.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pino.swift; sourceTree = "<group>"; };
 		8043EC0324F5B01300F998C1 /* icon_caelum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_caelum.png; sourceTree = "<group>"; };
 		8087A03224F6A83D0034716E /* AlunoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoAPI.swift; sourceTree = "<group>"; };
+		8087A03424F6E7B30034716E /* Repositorio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositorio.swift; sourceTree = "<group>"; };
+		8087A03624F6E86B0034716E /* AlunoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoDAO.swift; sourceTree = "<group>"; };
 		80DA357424E31A5800FA70A4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		AC951B229E6C2B9FDE03E918 /* Pods_Agenda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agenda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37ADCBA501784D5FE4A9F5C /* Pods-Agenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.release.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.release.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				8087A03224F6A83D0034716E /* AlunoAPI.swift */,
+				8087A03624F6E86B0034716E /* AlunoDAO.swift */,
+				8087A03424F6E7B30034716E /* Repositorio.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				03AA176D1FC8515A003CB2B8 /* AlunoViewController.swift in Sources */,
 				8087A03324F6A83D0034716E /* AlunoAPI.swift in Sources */,
 				8043EBFF24F59E1000F998C1 /* Pino.swift in Sources */,
+				8087A03724F6E86B0034716E /* AlunoDAO.swift in Sources */,
 				03AA17661FC84353003CB2B8 /* HomeTableViewController.swift in Sources */,
 				03AA17561FC84154003CB2B8 /* Agenda.xcdatamodeld in Sources */,
 				80DA357524E31A5900FA70A4 /* ImagePicker.swift in Sources */,
@@ -363,6 +370,7 @@
 				8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */,
 				8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */,
 				8043EBFA24F587A300F998C1 /* Notificacoes.swift in Sources */,
+				8087A03524F6E7B30034716E /* Repositorio.swift in Sources */,
 				8043EBF524F4743300F998C1 /* MapaViewController.swift in Sources */,
 				03AA174E1FC84154003CB2B8 /* AppDelegate.swift in Sources */,
 				8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */,
