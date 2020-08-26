@@ -18,7 +18,14 @@ class AlunoAPI: NSObject {
         AF.request("https://agenda-ios.herokuapp.com/api/aluno", method: .get).responseJSON { (response) in
             switch response.result {
                 case .success:
-                    print(response)
+                    if let resposta = response.value as? Dictionary<String, Any> {
+                        guard let listaDeAlunos = resposta["alunos"] as? Array<Dictionary<String, Any>> else { return }
+                        
+                        for dicionarioDeAluno in listaDeAlunos {
+                            AlunoDAO().salvaAluno(dicionarioDeAluno: dicionarioDeAluno)
+                        }
+                        
+                    }
                 case .failure:
                     print(response.error!)
                     break
