@@ -57,7 +57,9 @@ class AlunoDAO: NSObject {
        
        let nomeDaImagem = String(format: "%@.jpeg", NSUUID().uuidString)
        let url = URL(fileURLWithPath: String(format: "%@/%@", caminhoCompleto, nomeDaImagem))
-           
+        
+        guard let id = UUID(uuidString: dicionarioDeAluno["id"] as! String) else { return }
+       aluno.id = id
        aluno.nome = dicionarioDeAluno["nome"] as? String
        aluno.endereco = dicionarioDeAluno["endereco"] as? String
        aluno.telefone = dicionarioDeAluno["telefone"] as? String
