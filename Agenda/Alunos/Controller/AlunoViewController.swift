@@ -86,6 +86,15 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
         
     func montaDicionarioDeParamentos() -> Dictionary<String, String> {
         
+        var id = ""
+        
+        if aluno?.id == nil {
+            id = String(describing: UUID())
+        } else {
+            guard let idDoAlunoExistente = aluno?.id else { return [:]}
+            id = String(describing: idDoAlunoExistente)
+        }
+        
         guard let nome = textFieldNome.text else { return [:] }
         guard let endereco = textFieldEndereco.text else { return [:] }
         guard let telefone = textFieldTelefone.text else { return [:] }
@@ -93,7 +102,7 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada{
         guard let nota = textFieldNota.text else { return [:] }
         
         let dicionario: Dictionary<String, String> = [
-            "id": String(describing: UUID()).lowercased(),
+            "id": id.lowercased(),
             "nome": nome,
             "endereco": endereco,
             "telefone": telefone,

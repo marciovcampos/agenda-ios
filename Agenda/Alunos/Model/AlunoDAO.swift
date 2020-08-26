@@ -38,42 +38,54 @@ class AlunoDAO: NSObject {
     }
     
     func salvaAluno(dicionarioDeAluno: Dictionary<String, Any>) {
-               
-       let aluno = Aluno(context: contexto)
-       
-       let caminhoDoDSistemaDeArquivos = NSHomeDirectory() as NSString
-       let diretorioDeImagens = "Documents/Images"
-       let caminhoCompleto = caminhoDoDSistemaDeArquivos.appendingPathComponent(diretorioDeImagens)
-               
-       let gerenciadoDeArquivos = FileManager.default
-       
-       if !gerenciadoDeArquivos.fileExists(atPath: caminhoCompleto){
-           do {
-               try gerenciadoDeArquivos.createDirectory(atPath: caminhoCompleto, withIntermediateDirectories: false, attributes: nil)
-           } catch {
-               print(error.localizedDescription)
-           }
-       }
-       
-       let nomeDaImagem = String(format: "%@.jpeg", NSUUID().uuidString)
-       let url = URL(fileURLWithPath: String(format: "%@/%@", caminhoCompleto, nomeDaImagem))
         
+        
+      // Salva imagem
+      let caminhoDoDSistemaDeArquivos = NSHomeDirectory() as NSString
+      let diretorioDeImagens = "Documents/Images"
+      let caminhoCompleto = caminhoDoDSistemaDeArquivos.appendingPathComponent(diretorioDeImagens)
+              
+      let gerenciadoDeArquivos = FileManager.default
+      
+      if !gerenciadoDeArquivos.fileExists(atPath: caminhoCompleto){
+          do {
+              try gerenciadoDeArquivos.createDirectory(atPath: caminhoCompleto, withIntermediateDirectories: false, attributes: nil)
+          } catch {
+              print(error.localizedDescription)
+          }
+      }
+      
+      let nomeDaImagem = String(format: "%@.jpeg", NSUUID().uuidString)
+      let url = URL(fileURLWithPath: String(format: "%@/%@", caminhoCompleto, nomeDaImagem))
+               
+               
+        var aluno:NSManagedObject?
         guard let id = UUID(uuidString: dicionarioDeAluno["id"] as! String) else { return }
-       aluno.id = id
-       aluno.nome = dicionarioDeAluno["nome"] as? String
-       aluno.endereco = dicionarioDeAluno["endereco"] as? String
-       aluno.telefone = dicionarioDeAluno["telefone"] as? String
-       aluno.site = dicionarioDeAluno["site"] as? String
-       aluno.foto = String(format: "%@/%@", diretorioDeImagens, nomeDaImagem)
         
+        let alunos = recuperaAlunos().filter() { $0.id == id}
+        
+        if alunos.count > 0 {
+            guard let alunoEncontrado = alunos.first else { return }
+            aluno = alunoEncontrado
+        } else {
+            let entidade = NSEntityDescription.entity(forEntityName: "Aluno", in: contexto)
+            aluno = NSManagedObject(entity: entidade!, insertInto: contexto)
+        }
+      
+        aluno?.setValue(id, forKey: "id")
+        aluno?.setValue(dicionarioDeAluno["nome"] as? String, forKey: "nome")
+        aluno?.setValue(dicionarioDeAluno["endereco"] as? String, forKey: "endereco")
+        aluno?.setValue(dicionarioDeAluno["telefone"] as? String, forKey: "telefone")
+        aluno?.setValue(dicionarioDeAluno["site"] as? String, forKey: "site")
+        aluno?.setValue(String(format: "%@/%@", diretorioDeImagens, nomeDaImagem), forKey: "foto")
         
         guard let nota = dicionarioDeAluno["nota"] else { return }
         
         if (nota is String){
-           aluno.nota = (dicionarioDeAluno["nota"] as! NSString).doubleValue
+           aluno?.setValue((dicionarioDeAluno["nota"] as! NSString).doubleValue, forKey: "nota")
         } else {
             let conversaoDeNota = String(describing: nota)
-            aluno.nota = (conversaoDeNota as NSString).doubleValue
+            aluno?.setValue(conversaoDeNota, forKey: "nota")
         }
      
        atualizaContexto()
