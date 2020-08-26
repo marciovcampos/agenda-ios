@@ -11,11 +11,31 @@ import CoreData
 
 class AlunoDAO: NSObject {
     
+    var gerenciadorDeResultados:NSFetchedResultsController<Aluno>?
     var contexto: NSManagedObjectContext {
                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                return appDelegate.persistentContainer.viewContext
            }
     
+    func recuperaAlunos() -> Array<Aluno> {
+              
+        let pesquisaAluno:NSFetchRequest<Aluno> = Aluno.fetchRequest()
+        let ordenaPorNome = NSSortDescriptor(key: "nome", ascending: true)
+        pesquisaAluno.sortDescriptors = [ordenaPorNome]
+     
+        gerenciadorDeResultados = NSFetchedResultsController(fetchRequest: pesquisaAluno, managedObjectContext: contexto, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try gerenciadorDeResultados?.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        guard let listaDeAlunos = gerenciadorDeResultados?.fetchedObjects else { return [] }
+        
+        return listaDeAlunos
+        
+    }
     
     func salvaAluno(dicionarioDeAluno: Dictionary<String, Any>) {
                
@@ -37,16 +57,7 @@ class AlunoDAO: NSObject {
        
        let nomeDaImagem = String(format: "%@.jpeg", NSUUID().uuidString)
        let url = URL(fileURLWithPath: String(format: "%@/%@", caminhoCompleto, nomeDaImagem))
-       
-//       guard let imagem = imageAluno.image else { return }
-//       guard let data = UIImagePNGRepresentation(imagem) else { return }
-       
-//       do {
-//           try data.write(to: url)
-//       }catch {
-//           print(error.localizedDescription)
-//       }
-       
+           
        aluno.nome = dicionarioDeAluno["nome"] as? String
        aluno.endereco = dicionarioDeAluno["endereco"] as? String
        aluno.telefone = dicionarioDeAluno["telefone"] as? String

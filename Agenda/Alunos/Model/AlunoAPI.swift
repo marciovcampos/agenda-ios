@@ -14,7 +14,7 @@ class AlunoAPI: NSObject {
     
     // MARK: - GET
     
-    func recuperaAlunos(){
+    func recuperaAlunos(completion:@escaping() -> Void){
         AF.request("https://agenda-ios.herokuapp.com/api/aluno", method: .get).responseJSON { (response) in
             switch response.result {
                 case .success:
@@ -24,10 +24,11 @@ class AlunoAPI: NSObject {
                         for dicionarioDeAluno in listaDeAlunos {
                             AlunoDAO().salvaAluno(dicionarioDeAluno: dicionarioDeAluno)
                         }
-                        
+                        completion()
                     }
                 case .failure:
                     print(response.error!)
+                    completion()
                     break
                 }
         }

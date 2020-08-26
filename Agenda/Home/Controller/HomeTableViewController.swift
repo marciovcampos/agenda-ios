@@ -19,7 +19,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
            return appDelegate.persistentContainer.viewContext
        }
     let searchController = UISearchController(searchResultsController: nil)
-    var gerenciadorDeResultados:NSFetchedResultsController<Aluno>?
+   
     var alunoViewController:AlunoViewController?
     var mensagem = Mensagem()
     
@@ -152,27 +152,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         alunoViewController?.aluno = alunoSelecionado
     }
     
-    func recuperaAluno(filtro:String = "") {
-        
-        AlunoAPI().recuperaAlunos()
-        
-        let pesquisaAluno:NSFetchRequest<Aluno> = Aluno.fetchRequest()
-        let ordenaPorNome = NSSortDescriptor(key: "nome", ascending: true)
-        pesquisaAluno.sortDescriptors = [ordenaPorNome]
-        
-        if verificaFiltro(filtro){
-            pesquisaAluno.predicate = filtraAluno(filtro)
-        }
-
-        gerenciadorDeResultados = NSFetchedResultsController(fetchRequest: pesquisaAluno, managedObjectContext: contexto, sectionNameKeyPath: nil, cacheName: nil)
-        gerenciadorDeResultados?.delegate = self
-
-        do {
-            try gerenciadorDeResultados?.performFetch()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    
     
     func filtraAluno(_ filtro:String) -> NSPredicate {
         return NSPredicate(format: "nome CONTAINS %@", filtro)
