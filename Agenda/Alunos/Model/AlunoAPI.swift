@@ -11,6 +11,23 @@ import Alamofire
 
 class AlunoAPI: NSObject {
     
+    
+    // MARK: - GET
+    
+    func recuperaAlunos(){
+        AF.request("https://agenda-ios.herokuapp.com/api/aluno", method: .get).responseJSON { (response) in
+            switch response.result {
+                case .success:
+                    print(response)
+                case .failure:
+                    print(response.error!)
+                    break
+                }
+        }
+    }
+    
+    // MARK: - POST
+    
     func salvaAlunosNoServidor(parametros: Dictionary<String, String>) {
         guard let url = URL(string: "https://agenda-ios.herokuapp.com/api/aluno") else { return }
         
