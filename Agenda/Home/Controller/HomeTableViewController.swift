@@ -56,50 +56,55 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     @objc func abrirActionSheet(_ longPress:UILongPressGestureRecognizer){
         if longPress.state == .began {
             let alunoSelecionado = alunos[(longPress.view?.tag)!]
-            let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(completion: { (opcao) in
-                switch opcao {
-                    case .sms:
-                        if let componenteMensagem = self.mensagem.configuraSMS(alunoSelecionado) {
-                            componenteMensagem.messageComposeDelegate = self.mensagem
-                            self.present(componenteMensagem, animated: true, completion: nil)
-                        }
-                    break
-                    case .ligacao:
-                        guard let numeroDoAluno = alunoSelecionado.telefone else { return }
-                        if let url = URL(string: "tel://\(numeroDoAluno)"), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        }
-                    break
-                case .waze:
-                    if UIApplication.shared.canOpenURL(URL(string: "waze://")!){
-                        guard let enderecoDoAluno = alunoSelecionado.endereco else { return }
-                        Localizacao().converterEnderecoEmCoordenadas(endereco: enderecoDoAluno, local: { (localizacaoEncontrada) in
-                            let latitude = String(describing: localizacaoEncontrada.location!.coordinate.latitude)
-                            let longitude = String(describing: localizacaoEncontrada.location!.coordinate.longitude)
-                            let url:String = "waze://?ll=\(latitude),\(longitude)&navigate=yes"
-                            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
-                        })
-                    }
-                    break
-                case .mapa:
-                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
-                    mapa.aluno = alunoSelecionado
-                    self.navigationController?.pushViewController(mapa, animated: true)
-                    break
-                case .abrirPaginaWeb:
-                    if let urlDoAluno = alunoSelecionado.site {
-                        var urlFormatada = urlDoAluno
-                        if !urlFormatada.hasPrefix("http://"){
-                            urlFormatada = String(format: "http://%@", urlFormatada)
-                        }
-                        guard let url = URL(string: urlFormatada) else { return }
-                        let safariViewController = SFSafariViewController(url: url)
-                        self.present(safariViewController, animated: true, completion: nil)
-                    }
-                    break
-                }
-            })
-            self.present(menu, animated: true, completion: nil)
+            
+            guard let navigation = navigationController else  { return }
+            
+            let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(navigation: navigation, alunoSelecionado: alunoSelecionado)
+            
+//            let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(completion: { (opcao) in
+//                switch opcao {
+//                    case .sms:
+//                        if let componenteMensagem = self.mensagem.configuraSMS(alunoSelecionado) {
+//                            componenteMensagem.messageComposeDelegate = self.mensagem
+//                            self.present(componenteMensagem, animated: true, completion: nil)
+//                        }
+//                    break
+//                    case .ligacao:
+//                        guard let numeroDoAluno = alunoSelecionado.telefone else { return }
+//                        if let url = URL(string: "tel://\(numeroDoAluno)"), UIApplication.shared.canOpenURL(url) {
+//                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                        }
+//                    break
+//                case .waze:
+//                    if UIApplication.shared.canOpenURL(URL(string: "waze://")!){
+//                        guard let enderecoDoAluno = alunoSelecionado.endereco else { return }
+//                        Localizacao().converterEnderecoEmCoordenadas(endereco: enderecoDoAluno, local: { (localizacaoEncontrada) in
+//                            let latitude = String(describing: localizacaoEncontrada.location!.coordinate.latitude)
+//                            let longitude = String(describing: localizacaoEncontrada.location!.coordinate.longitude)
+//                            let url:String = "waze://?ll=\(latitude),\(longitude)&navigate=yes"
+//                            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+//                        })
+//                    }
+//                    break
+//                case .mapa:
+//                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
+//                    mapa.aluno = alunoSelecionado
+//                    self.navigationController?.pushViewController(mapa, animated: true)
+//                    break
+//                case .abrirPaginaWeb:
+//                    if let urlDoAluno = alunoSelecionado.site {
+//                        var urlFormatada = urlDoAluno
+//                        if !urlFormatada.hasPrefix("http://"){
+//                            urlFormatada = String(format: "http://%@", urlFormatada)
+//                        }
+//                        guard let url = URL(string: urlFormatada) else { return }
+//                        let safariViewController = SFSafariViewController(url: url)
+//                        self.present(safariViewController, animated: true, completion: nil)
+//                    }
+//                    break
+//                }
+//            })
+//            self.present(menu, animated: true, completion: nil)
         }
     }
 
