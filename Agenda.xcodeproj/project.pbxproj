@@ -16,6 +16,7 @@
 		03AA17681FC843B1003CB2B8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA17671FC843B1003CB2B8 /* HomeTableViewCell.swift */; };
 		03AA176D1FC8515A003CB2B8 /* AlunoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */; };
 		80227D5C24F8468A00AC0C22 /* LigacaoTelefonica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80227D5B24F8468A00AC0C22 /* LigacaoTelefonica.swift */; };
+		80227D5E24F8484C00AC0C22 /* Safari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80227D5D24F8484C00AC0C22 /* Safari.swift */; };
 		8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */; };
 		8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBEE24F43DCD00F998C1 /* Mensagem.swift */; };
 		8043EBF124F46DF500F998C1 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043EBF024F46DF500F998C1 /* Localizacao.swift */; };
@@ -44,6 +45,7 @@
 		03AA17671FC843B1003CB2B8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoViewController.swift; sourceTree = "<group>"; };
 		80227D5B24F8468A00AC0C22 /* LigacaoTelefonica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LigacaoTelefonica.swift; sourceTree = "<group>"; };
+		80227D5D24F8484C00AC0C22 /* Safari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Safari.swift; sourceTree = "<group>"; };
 		8043EBEC24F4390400F998C1 /* MenuOpcoesAlunos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOpcoesAlunos.swift; sourceTree = "<group>"; };
 		8043EBEE24F43DCD00F998C1 /* Mensagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mensagem.swift; sourceTree = "<group>"; };
 		8043EBF024F46DF500F998C1 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				8043EBF924F587A300F998C1 /* Notificacoes.swift */,
 				8043EBFB24F5924100F998C1 /* AutenticacaoLocal.swift */,
 				80227D5B24F8468A00AC0C22 /* LigacaoTelefonica.swift */,
+				80227D5D24F8484C00AC0C22 /* Safari.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				80DA357524E31A5900FA70A4 /* ImagePicker.swift in Sources */,
 				8043EBF824F56B6E00F998C1 /* CalculaMediaAPI.swift in Sources */,
 				03AA17681FC843B1003CB2B8 /* HomeTableViewCell.swift in Sources */,
+				80227D5E24F8484C00AC0C22 /* Safari.swift in Sources */,
 				8043EBED24F4390400F998C1 /* MenuOpcoesAlunos.swift in Sources */,
 				8043EBEF24F43DCD00F998C1 /* Mensagem.swift in Sources */,
 				8043EBFA24F587A300F998C1 /* Notificacoes.swift in Sources */,

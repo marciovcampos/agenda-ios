@@ -42,7 +42,7 @@ class MenuOpcoesAlunos: NSObject {
         menu.addAction(mapa)
         
         let abrirPaginaWeb = UIAlertAction(title: "abrir página", style: .default) { (acao) in
-            
+            Safari().abrePaginaWeb(alunoSelecionado, controller: viewController)
         }
         menu.addAction(abrirPaginaWeb)
              

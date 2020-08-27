@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import CoreData
-import SafariServices
 
 class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
@@ -17,7 +15,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     let searchController = UISearchController(searchResultsController: nil)
    
     var alunoViewController:AlunoViewController?
-    var mensagem = Mensagem()
     var alunos:Array<Aluno> = []
     
     // MARK: - View Lifecycle
@@ -60,21 +57,9 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             guard let navigation = navigationController else  { return }
             
             let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(navigation: navigation, alunoSelecionado: alunoSelecionado)
+
+            present(menu, animated: true, completion: nil)
             
-//                case .abrirPaginaWeb:
-//                    if let urlDoAluno = alunoSelecionado.site {
-//                        var urlFormatada = urlDoAluno
-//                        if !urlFormatada.hasPrefix("http://"){
-//                            urlFormatada = String(format: "http://%@", urlFormatada)
-//                        }
-//                        guard let url = URL(string: urlFormatada) else { return }
-//                        let safariViewController = SFSafariViewController(url: url)
-//                        self.present(safariViewController, animated: true, completion: nil)
-//                    }
-//                    break
-//                }
-//            })
-//            self.present(menu, animated: true, completion: nil)
         }
     }
 
@@ -123,20 +108,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         let alunoSelecionado = alunos[indexPath.row]
         alunoViewController?.aluno = alunoSelecionado
     }
-    
-    // MARK: - FetchedResultsControllerDelegate
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            break
-        default:
-            tableView.reloadData()
-        }
-    }
-    
+        
     @IBAction func buttonCalculaMedia(_ sender: UIBarButtonItem) {
         
         CalculaMediaAPI().calculaMediaGeralDosAlunos(alunos: alunos, sucesso: {
