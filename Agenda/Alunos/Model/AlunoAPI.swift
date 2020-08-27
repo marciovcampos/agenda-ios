@@ -9,12 +9,14 @@
 import UIKit
 import Alamofire
 
-class AlunoAPI: NSObject {    
+class AlunoAPI: NSObject {
+    
+    let urlApi = "https://agenda-ios.herokuapp.com/api/aluno"
     
     // MARK: - GET
     
     func recuperaAlunos(completion:@escaping() -> Void){
-        AF.request("https://agenda-ios.herokuapp.com/api/aluno", method: .get).responseJSON { (response) in
+        AF.request(urlApi, method: .get).responseJSON { (response) in
             switch response.result {
                 case .success:
                     if let resposta = response.value as? Dictionary<String, Any> {
@@ -36,7 +38,7 @@ class AlunoAPI: NSObject {
     // MARK: - POST
     
     func salvaAlunosNoServidor(parametros: Dictionary<String, String>) {
-        guard let url = URL(string: "https://agenda-ios.herokuapp.com/api/aluno") else { return }
+        guard let url = URL(string: urlApi) else { return }
         
         var requisicao = URLRequest(url: url)
         requisicao.httpMethod = "POST"
@@ -57,7 +59,7 @@ class AlunoAPI: NSObject {
     
     func deletaAluno(id:String){
         
-        AF.request("https://agenda-ios.herokuapp.com/api/aluno\(id)", method: .delete).responseJSON { (resposta) in
+        AF.request("\(urlApi)/\(id)", method: .delete).responseJSON { (resposta) in
             print(resposta.result)
             switch resposta.result {
             case .failure:
