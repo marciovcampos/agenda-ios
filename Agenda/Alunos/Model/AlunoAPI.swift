@@ -9,8 +9,7 @@
 import UIKit
 import Alamofire
 
-class AlunoAPI: NSObject {
-    
+class AlunoAPI: NSObject {    
     
     // MARK: - GET
     
@@ -53,5 +52,22 @@ class AlunoAPI: NSObject {
         }
                 
     }
+    
+    // MARK: - DELETE
+    
+    func deletaAluno(id:String){
+        
+        AF.request("https://agenda-ios.herokuapp.com/api/aluno\(id)", method: .delete).responseJSON { (resposta) in
+            print(resposta.result)
+            switch resposta.result {
+            case .failure:
+                print(resposta.error!)
+            default:
+                break
+            }
+        }
+        
+    }
+    
 
 }
