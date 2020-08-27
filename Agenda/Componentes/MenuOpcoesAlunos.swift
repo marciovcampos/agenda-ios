@@ -30,7 +30,7 @@ class MenuOpcoesAlunos: NSObject {
         
         
         let waze = UIAlertAction(title: "localizar no waze", style: .default) { (acao) in
-            
+            Localizacao().localizaAlunoNoWaze(alunoSelecionado)
         }
         menu.addAction(waze)
         

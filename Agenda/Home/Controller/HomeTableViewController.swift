@@ -62,16 +62,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(navigation: navigation, alunoSelecionado: alunoSelecionado)
             
             
-//                case .waze:
-//                    if UIApplication.shared.canOpenURL(URL(string: "waze://")!){
-//                        guard let enderecoDoAluno = alunoSelecionado.endereco else { return }
-//                        Localizacao().converterEnderecoEmCoordenadas(endereco: enderecoDoAluno, local: { (localizacaoEncontrada) in
-//                            let latitude = String(describing: localizacaoEncontrada.location!.coordinate.latitude)
-//                            let longitude = String(describing: localizacaoEncontrada.location!.coordinate.longitude)
-//                            let url:String = "waze://?ll=\(latitude),\(longitude)&navigate=yes"
-//                            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
-//                        })
-//                    }
+  
+            
 //                    break
 //                case .mapa:
 //                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
