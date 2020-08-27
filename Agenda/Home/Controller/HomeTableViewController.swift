@@ -61,15 +61,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             
             let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(navigation: navigation, alunoSelecionado: alunoSelecionado)
             
-            
-  
-            
-//                    break
-//                case .mapa:
-//                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
-//                    mapa.aluno = alunoSelecionado
-//                    self.navigationController?.pushViewController(mapa, animated: true)
-//                    break
 //                case .abrirPaginaWeb:
 //                    if let urlDoAluno = alunoSelecionado.site {
 //                        var urlFormatada = urlDoAluno

@@ -35,7 +35,9 @@ class MenuOpcoesAlunos: NSObject {
         menu.addAction(waze)
         
         let mapa = UIAlertAction(title: "localizar no mapa", style: .default) { (acao) in
-               
+               let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapa") as! MapaViewController
+               mapa.aluno = alunoSelecionado
+               navigation.pushViewController(mapa, animated: true)
              }
         menu.addAction(mapa)
         
