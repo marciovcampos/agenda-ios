@@ -24,7 +24,7 @@ class MenuOpcoesAlunos: NSObject {
         menu.addAction(sms)
         
         let ligacao = UIAlertAction(title: "ligar", style: .default) { (acao) in
-           
+            LigacaoTelefonica().fazLigacao(alunoSelecionado)
         }
         menu.addAction(ligacao)
         

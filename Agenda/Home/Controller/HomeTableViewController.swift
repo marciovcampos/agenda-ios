@@ -61,20 +61,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             
             let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(navigation: navigation, alunoSelecionado: alunoSelecionado)
             
-//            let menu = MenuOpcoesAlunos().configuraMenuDeOpcoesDoAluno(completion: { (opcao) in
-//                switch opcao {
-//                    case .sms:
-//                        if let componenteMensagem = self.mensagem.configuraSMS(alunoSelecionado) {
-//                            componenteMensagem.messageComposeDelegate = self.mensagem
-//                            self.present(componenteMensagem, animated: true, completion: nil)
-//                        }
-//                    break
-//                    case .ligacao:
-//                        guard let numeroDoAluno = alunoSelecionado.telefone else { return }
-//                        if let url = URL(string: "tel://\(numeroDoAluno)"), UIApplication.shared.canOpenURL(url) {
-//                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                        }
-//                    break
+            
 //                case .waze:
 //                    if UIApplication.shared.canOpenURL(URL(string: "waze://")!){
 //                        guard let enderecoDoAluno = alunoSelecionado.endereco else { return }
