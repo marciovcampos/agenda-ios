@@ -129,14 +129,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                         
                         let alunoSelecionado = self.alunos[indexPath.row]
                         Repositorio().deletaAluno(aluno: alunoSelecionado)
-                        
-//                       guard let alunoSelecionado = self.gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return }
-//                         self.contexto.delete(alunoSelecionado)
-//                        do {
-//                         try self.contexto.save()
-//                        }catch {
-//                            print(error.localizedDescription)
-//                        }
+                        self.alunos.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
                     }
                 }
             })

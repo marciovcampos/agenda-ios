@@ -34,6 +34,7 @@ class Repositorio: NSObject {
         
         guard let id = aluno.id else { return }
         AlunoAPI().deletaAluno(id: String(describing: id).lowercased())
+        AlunoDAO().deletaAluno(aluno: aluno)
         
     }
         
