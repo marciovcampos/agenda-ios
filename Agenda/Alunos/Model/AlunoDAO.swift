@@ -78,16 +78,16 @@ class AlunoDAO: NSObject {
         aluno?.setValue(dicionarioDeAluno["telefone"] as? String, forKey: "telefone")
         aluno?.setValue(dicionarioDeAluno["site"] as? String, forKey: "site")
         aluno?.setValue(String(format: "%@/%@", diretorioDeImagens, nomeDaImagem), forKey: "foto")
-        
+                     
         guard let nota = dicionarioDeAluno["nota"] else { return }
         
         if (nota is String){
            aluno?.setValue((dicionarioDeAluno["nota"] as! NSString).doubleValue, forKey: "nota")
         } else {
             let conversaoDeNota = String(describing: nota)
-            aluno?.setValue(conversaoDeNota, forKey: "nota")
+            aluno?.setValue((conversaoDeNota as NSString).doubleValue, forKey: "nota")
         }
-     
+
        atualizaContexto()
         
     }
